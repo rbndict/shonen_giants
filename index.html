@@ -3,168 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shonen Giants | Multi-Series Archive</title>
+    <title>Shonen Giants | Expanded Archive</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --op-color: #ff4500;
-            --nr-color: #ffa500;
-            --bl-color: #009dff;
-            --bg-dark: #080808;
-            --glass: rgba(255, 255, 255, 0.03);
+            --accent-color: #ff4500;
+            --bg-dark: #050505;
+            --card-bg: #111111;
         }
 
         body {
             background-color: var(--bg-dark);
-            color: #f0f0f0;
+            color: #e0e0e0;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
         }
 
-        /* UI Styling */
-        .hero-section {
-            padding: 80px 0;
-            background: radial-gradient(circle at top right, #1a1a1a, #080808);
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+
+        .hero-header {
+            padding: 60px 0;
+            background: linear-gradient(to bottom, #111, var(--bg-dark));
+        }
+
+        .accent-border {
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            transition: border-color 0.5s ease;
         }
 
         .nav-pills .nav-link {
-            color: #888;
-            border-radius: 50px;
-            padding: 10px 25px;
-            font-weight: 600;
+            color: #666;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            padding: 12px 30px;
             border: 1px solid transparent;
-            transition: 0.3s;
         }
 
         .nav-pills .nav-link.active {
-            background-color: var(--glass) !important;
-            border-color: #444;
-            color: #fff !important;
+            background: transparent !important;
+            color: var(--accent-color) !important;
+            border-bottom: 2px solid var(--accent-color);
+            border-radius: 0;
         }
 
-        .character-card {
-            background: var(--glass);
+        /* Character Grid */
+        .char-card {
+            background: var(--card-bg);
             border: 1px solid #222;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .character-card:hover {
-            transform: translateY(-5px);
-            border-color: #555;
+        .char-card:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+            z-index: 10;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .char-img-wrapper {
+            height: 200px;
+            border-radius: 11px 11px 0 0;
+            overflow: hidden;
         }
 
         .char-img {
-            height: 250px;
             width: 100%;
+            height: 100%;
             object-fit: cover;
-            filter: grayscale(30%);
-            transition: 0.3s;
         }
 
-        .character-card:hover .char-img {
-            filter: grayscale(0%);
+        .char-name {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin: 0;
+            padding-top: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .detail-box {
-            background: #111;
-            border-radius: 20px;
-            padding: 30px;
-            border-left: 4px solid var(--op-color);
-        }
-
-        .section-title {
-            letter-spacing: 2px;
+        .char-role {
+            font-size: 0.7rem;
+            color: #666;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            color: #888;
         }
     </style>
 </head>
 <body>
 
-<div class="hero-section border-bottom border-secondary">
+<header class="hero-header border-bottom border-secondary">
     <div class="container text-center">
-        <h1 class="display-3 fw-800 mb-3">SHONEN <span style="color: var(--op-color);">GIANTS</span></h1>
-        <p class="text-muted mb-5">Exploring the worlds of Oda, Kishimoto, and Kubo.</p>
+        <h1 class="display-4 fw-800">SHONEN<span style="color: var(--accent-color);">ARCHIVE</span></h1>
         
-        <ul class="nav nav-pills justify-content-center mb-5" id="animeTabs" role="tablist">
+        <ul class="nav nav-pills justify-content-center mt-4" id="pills-tab">
             <li class="nav-item">
-                <button class="nav-link active" id="op-tab" data-bs-toggle="pill" data-bs-target="#one-piece" onclick="loadDetails(21, 'one-piece')">One Piece</button>
+                <button class="nav-link active" onclick="updateTheme('#ff4500', 21)">One Piece</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link" id="nr-tab" data-bs-toggle="pill" data-bs-target="#naruto" onclick="loadDetails(20, 'naruto')">Naruto</button>
+                <button class="nav-link" onclick="updateTheme('#ffa500', 20)">Naruto</button>
             </li>
             <li class="nav-item">
-                <button class="nav-link" id="bl-tab" data-bs-toggle="pill" data-bs-target="#bleach" onclick="loadDetails(269, 'bleach')">Bleach</button>
+                <button class="nav-link" onclick="updateTheme('#009dff', 269)">Bleach</button>
             </li>
         </ul>
     </div>
-</div>
+</header>
 
-<div class="container py-5">
-    <div class="tab-content" id="animeContent">
-        <div class="tab-pane fade show active" id="main-display">
-            <div id="loading-view" class="text-center py-5">
-                <div class="spinner-border text-danger"></div>
-            </div>
-            <div id="content-view"></div>
-        </div>
+<main class="container py-5">
+    <div id="loading-trigger" class="text-center">
+        <div class="spinner-border text-light" role="status"></div>
     </div>
-</div>
+
+    <div id="dynamic-content" class="opacity-0">
+        </div>
+</main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    async function loadDetails(id, type) {
-        const contentView = document.getElementById('content-view');
-        const loader = document.getElementById('loading-view');
+    // Theme Update Function
+    function updateTheme(color, id) {
+        document.documentElement.style.setProperty('--accent-color', color);
+        // Switch active tab UI
+        const buttons = document.querySelectorAll('.nav-link');
+        buttons.forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.innerText.toLowerCase().includes(id === 21 ? 'one piece' : id === 20 ? 'naruto' : 'bleach')) {
+                btn.classList.add('active');
+            }
+        });
+        loadData(id);
+    }
+
+    async function loadData(id) {
+        const content = document.getElementById('dynamic-content');
+        const loader = document.getElementById('loading-trigger');
         
-        contentView.style.opacity = '0';
+        content.classList.add('opacity-0');
         loader.classList.remove('d-none');
 
         try {
-
             const [animeRes, charRes] = await Promise.all([
                 fetch(`https://api.jikan.moe/v4/anime/${id}`),
                 fetch(`https://api.jikan.moe/v4/anime/${id}/characters`)
             ]);
 
-            const animeData = await animeRes.json();
-            const charData = await charRes.json();
-            
-            const anime = animeData.data;
-            const topChars = charData.data.slice(0, 4); // Get top 4 main characters
+            const anime = (await animeRes.json()).data;
+            const characters = (await charRes.json()).data.slice(0, 12); // Fetches top 12
 
             let html = `
                 <div class="row g-5">
                     <div class="col-lg-4">
-                        <img src="${anime.images.jpg.large_image_url}" class="img-fluid rounded-4 shadow-lg mb-4" alt="${anime.title}">
-                        <div class="detail-box">
-                            <p class="section-title mb-1">Status</p>
-                            <p class="mb-3">${anime.status}</p>
-                            <p class="section-title mb-1">Episodes</p>
-                            <p class="mb-3">${anime.episodes || 'Ongoing'}</p>
-                            <p class="section-title mb-1">Score</p>
-                            <p class="h4 text-warning">⭐ ${anime.score}</p>
+                        <img src="${anime.images.jpg.large_image_url}" class="img-fluid rounded-4 mb-4 shadow border border-secondary">
+                        <div class="accent-border">
+                            <h5 class="fw-bold">Synopsis</h5>
+                            <p class="text-muted small">${anime.synopsis.substring(0, 300)}...</p>
+                            <div class="d-flex gap-3 mt-3">
+                                <div><small class="text-muted d-block">Score</small><strong>⭐ ${anime.score}</strong></div>
+                                <div><small class="text-muted d-block">Episodes</small><strong>${anime.episodes || '???'}</strong></div>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="col-lg-8">
-                        <h2 class="display-5 fw-bold mb-3">${anime.title}</h2>
-                        <p class="lead text-muted mb-4">${anime.synopsis}</p>
-                        
-                        <h3 class="h4 fw-bold mt-5 mb-4 border-bottom border-dark pb-2">Main Characters</h3>
+                        <h2 class="fw-800 mb-4 text-uppercase">Character Roster</h2>
                         <div class="row g-3">
-                            ${topChars.map(c => `
-                                <div class="col-6 col-md-3">
-                                    <div class="character-card">
-                                        <img src="${c.character.images.jpg.image_url}" class="char-img" alt="${c.character.name}">
-                                        <div class="p-2 text-center">
-                                            <p class="small fw-bold m-0">${c.character.name}</p>
-                                            <span class="text-muted" style="font-size: 0.7rem">${c.role}</span>
+                            ${characters.map(c => `
+                                <div class="col-6 col-sm-4 col-md-3">
+                                    <div class="char-card p-2">
+                                        <div class="char-img-wrapper">
+                                            <img src="${c.character.images.jpg.image_url}" class="char-img" alt="${c.character.name}">
                                         </div>
+                                        <p class="char-name">${c.character.name}</p>
+                                        <span class="char-role">${c.role}</span>
                                     </div>
                                 </div>
                             `).join('')}
@@ -174,16 +194,16 @@
             `;
 
             loader.classList.add('d-none');
-            contentView.innerHTML = html;
-            contentView.style.opacity = '1';
-            contentView.style.transition = 'opacity 0.5s ease-in';
+            content.innerHTML = html;
+            content.classList.remove('opacity-0');
+            content.style.transition = "opacity 0.8s ease";
 
-        } catch (error) {
-            contentView.innerHTML = `<p class="text-center text-danger">Error fetching details. Refresh and try again.</p>`;
+        } catch (err) {
+            content.innerHTML = `<p class="text-center">API limit reached. Please wait a few seconds and refresh.</p>`;
         }
     }
 
-    document.addEventListener('DOMContentLoaded', () => loadDetails(21, 'one-piece'));
+    window.onload = () => loadData(21);
 </script>
 
 </body>
