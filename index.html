@@ -126,7 +126,7 @@
         loader.classList.remove('d-none');
 
         try {
-            // Fetch Anime Data & Characters
+
             const [animeRes, charRes] = await Promise.all([
                 fetch(`https://api.jikan.moe/v4/anime/${id}`),
                 fetch(`https://api.jikan.moe/v4/anime/${id}/characters`)
@@ -183,7 +183,6 @@
         }
     }
 
-    // Initialize with One Piece on load
     document.addEventListener('DOMContentLoaded', () => loadDetails(21, 'one-piece'));
 </script>
 
