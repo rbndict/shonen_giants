@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big 3 Archive | Ultimate Edition</title>
+    <title>Big 3 Archive</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -213,16 +213,30 @@
 
 <script>
     const charTriviaDB = {
-        "Monkey D., Luffy": "Luffy's favorite food is meat-on-the-bone. Oda mentioned if he were real, he'd be Brazilian.",
-        "Roronoa, Zoro": "Zoro was originally conceived as a bodyguard for Buggy the Clown.",
-        "Nami": "Nami is the 3rd smartest character in the East Blue saga.",
-        "Nico, Robin": "Robin is the only human known to be able to read Poneglyphs.",
-        "Uzumaki, Naruto": "The 'Ichiraku Ramen' shop is based on a real-life ramen shop in Kyushu.",
-        "Uchiha, Sasuke": "Sasuke was a late addition to the series; an editor suggested Naruto needed a rival.",
-        "Hatake, Kakashi": "Kakashi's full face was kept a secret from readers for over 15 years.",
-        "Kurosaki, Ichigo": "Ichigo's name can be translated as 'One Protector' or 'Strawberry'.",
-        "Kuchiki, Rukia": "Rukia was the very first character Tite Kubo designed for Bleach.",
-        "Aizen, Sosuke": "Aizen's Zanpakuto, Kyoka Suigetsu, translates to 'Mirror Flower, Water Moon'."
+        "Monkey D., Luffy": "Nickname: 'Straw Hat'. Title: 'Sun God Nika'. One of the Four Emperors.",
+        "Roronoa, Zoro": "Nickname: 'Pirate Hunter'. A master of the Three Sword Style.",
+        "Nami": "Nickname: 'Cat Burglar'. Navigator of the Straw Hat Pirates.",
+        "Sanji": "Nickname: 'Black Leg'. Prince of the Germa Kingdom and master chef.",
+        "Usopp": "Nickname: 'God' Usopp / 'Sogeking'. The legendary sniper of the crew.",
+        "Tony Tony, Chopper": "Nickname: 'Cotton Candy Lover'. The crew's doctor and a reindeer.",
+        "Nico, Robin": "Nickname: 'Devil Child'. The Light of the Revolution.",
+        "Franky": "Nickname: 'Iron Man' / 'Cutty Flam'. The cyborg shipwright.",
+        "Brook": "Nickname: 'Soul King'. The undead musician with the Revive-Revive Fruit.",
+        "Jinbe": "Nickname: 'First Knight of the Sea'. Former Warlord and helmsman.",
+        "Uzumaki, Naruto": "Titles: 'Hero of the Hidden Leaf', 'Orange Hokage', 'Child of Prophecy'.",
+        "Uchiha, Sasuke": "Titles: 'The Supporting Kage', 'Child of the Sharingan'.",
+        "Haruno, Sakura": "Title: 'The Second Tsunade'. The world's greatest medical ninja.",
+        "Hatake, Kakashi": "Nickname: 'Copy Ninja' / 'Kakashi of the Sharingan'. Sixth Hokage.",
+        "Nara, Shikamaru": "Title: 'The Leaf's Greatest Strategist'. Possesses an IQ over 200.",
+        "Hyuga, Hinata": "Nickname: 'Byakugan Princess'. The legendary heiress of the Hyuga.",
+        "Kurosaki, Ichigo": "Title: 'Substitute Shinigami'. A unique hybrid of Shinigami, Hollow, and Quincy.",
+        "Kuchiki, Rukia": "Title: 'Captain of the 13th Division'. Wielder of Sode no Shirayuki.",
+        "Abarai, Renji": "Nickname: 'The Red Pineapple'. Vice-Captain of the 6th Division.",
+        "Kuchiki, Byakuya": "Title: 'Head of the Kuchiki Clan'. A master of Senbonzakura.",
+        "Zaraki, Kenpachi": "Title: 'The 11th Kenpachi'. The strongest brute force combatant in Soul Society.",
+        "Hitsugaya, Toshiro": "Nickname: 'The Boy Genius'. Wielder of the strongest ice-type Zanpakuto.",
+        "Aizen, Sosuke": "Title: 'The Great Betrayer'. Master of absolute hypnosis.",
+        "Ishida, Uryu": "Title: 'The Last Quincy'. A genius archer and survivor."
     };
 
     let charModal;
@@ -285,7 +299,7 @@
                     </div>
 
                     <div class="mb-5">
-                        ${activeTab === 'story' ? `<p class="lead" style="line-height:1.9">${anime.synopsis}</p>` : 
+                        ${activeTab === 'story' ? `<p class="lead" style="line-height:1.8">${anime.synopsis}</p>` : 
                         `<div class="row g-3">
                             <div class="col-md-6"><div class="p-3 bg-dark rounded-3 border border-secondary"><small class="text-muted d-block">Episodes</small>${anime.episodes || 'Ongoing'}</div></div>
                             <div class="col-md-6"><div class="p-3 bg-dark rounded-3 border border-secondary"><small class="text-muted d-block">Status</small>${anime.status}</div></div>
@@ -317,8 +331,8 @@
         document.getElementById('modalCharName').innerText = char.character.name;
         document.getElementById('modalCharImg').src = char.character.images.jpg.image_url;
         document.getElementById('modalCharRole').innerText = `Role: ${char.role}`;
-        document.getElementById('modalCharAbout').innerText = `Featured in ${animeData.title} with ${char.favorites} global favorites.`;
-        const trivia = charTriviaDB[char.character.name] || "This character is a major figure in the series history.";
+        document.getElementById('modalCharAbout').innerText = `Featured in ${animeData.title} with ${char.favorites} favorites.`;
+        const trivia = charTriviaDB[char.character.name] || "A key figure within the series narrative.";
         document.getElementById('modalCharTrivia').innerText = `"${trivia}"`;
         charModal.show();
     }
