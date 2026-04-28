@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Big 3 Archive</title>
+    <title>Big 3 Archive | Ultimate Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -87,6 +87,7 @@
             color: var(--text-dim);
             font-weight: 600;
             transition: 0.3s;
+            flex: 1;
         }
         .info-toggle-group .btn.active {
             background: var(--text-main);
@@ -99,12 +100,20 @@
             color: var(--text-dim);
             backdrop-filter: blur(20px);
         }
-        .trivia-badge {
-            background: rgba(255, 69, 0, 0.1);
-            border-left: 4px solid var(--accent);
+        .lore-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
+            margin-bottom: 12px;
+        }
+        .lore-label {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
         }
         .meme-card {
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -132,7 +141,7 @@
 
 <nav class="nexus-nav mb-5">
     <div class="container d-flex justify-content-between align-items-center">
-        <span class="navbar-brand m-0 animate__animated animate__fadeInDown">BIG3<span class="accent-txt">ARCHIVE</span></span>
+        <span class="navbar-brand m-0">BIG3<span class="accent-txt">ARCHIVE</span></span>
         <div class="d-flex gap-2">
             <button class="nav-link-custom active" id="tab-21" onclick="switchSeries(21, '#ff4500')">ONE PIECE</button>
             <button class="nav-link-custom" id="tab-20" onclick="switchSeries(20, '#ffa500')">NARUTO</button>
@@ -150,33 +159,28 @@
 
     <section class="py-5 mt-5 border-top border-secondary">
         <div class="text-center mb-5">
-            <h2 class="display-6 fw-bold">
-                <i class="fa-solid fa-face-grin-tears accent-txt"></i> MEME HALL OF FAME
-            </h2>
+            <h2 class="display-6 fw-bold"><i class="fa-solid fa-face-grin-tears accent-txt"></i> MEME HALL OF FAME</h2>
         </div>
         <div class="row g-4 justify-content-center">
             <div class="col-md-4">
                 <div class="meme-card p-3 text-center">
                     <img src="CON D. ORIANO.jfif" class="img-fluid rounded" alt="Con D. Oriano">
                     <h5 class="text-white fw-bold">CON D. ORIANO</h5>
-                    <p class="small text-muted italic">"The man who actually possesses the Will of D. The legend of G-8."</p>
-                    <div class="badge bg-dark border border-danger text-danger">#TheG8Legend</div>
+                    <p class="small text-muted">"The legend of G-8."</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="meme-card p-3 text-center">
                     <img src="51.jfif" class="img-fluid rounded" alt="Naruto Run">
                     <h5 class="text-white fw-bold">AREA 51 SURVIVOR</h5>
-                    <p class="small text-muted italic">"Aerodynamics? Optional. Speed? Infinite."</p>
-                    <div class="badge bg-dark border border-warning text-warning">#NarutoRun</div>
+                    <p class="small text-muted">"Infinite Speed."</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="meme-card p-3 text-center">
                     <img src="chairsama.jfif" class="img-fluid rounded" alt="Chair-sama">
                     <h5 class="text-white fw-bold">CHAIR-SAMA</h5>
-                    <p class="small text-muted italic">"The strongest antagonist is actually the furniture."</p>
-                    <div class="badge bg-dark border border-info text-info">#ChairSama</div>
+                    <p class="small text-muted">"The strongest antagonist."</p>
                 </div>
             </div>
         </div>
@@ -185,24 +189,22 @@
 
 <div class="modal fade" id="charModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content p-3">
             <div class="modal-header border-0">
-                <h5 class="modal-title fw-bold accent-txt" id="modalCharName">Character Name</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title fw-bold accent-txt" id="modalCharName"></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body pt-0">
                 <div class="row align-items-center">
-                    <div class="col-4">
-                        <img id="modalCharImg" src="" class="img-fluid rounded-4 border border-secondary shadow">
-                    </div>
+                    <div class="col-4"><img id="modalCharImg" src="" class="img-fluid rounded-4 border border-secondary"></div>
                     <div class="col-8">
-                        <p id="modalCharRole" class="small text-white-50 mb-1">Role: Main</p>
+                        <p id="modalCharRole" class="small text-white-50 mb-1"></p>
                         <p id="modalCharAbout" class="small mb-0"></p>
                     </div>
                 </div>
-                <div class="trivia-badge">
-                    <h6 class="small fw-bold accent-txt mb-1"><i class="fa-solid fa-lightbulb"></i> HIDDEN TRIVIA</h6>
-                    <p id="modalCharTrivia" class="small m-0 italic text-white"></p>
+                <div class="p-3 mt-3 bg-dark rounded-3 border-start border-4 border-warning">
+                    <h6 class="small fw-bold text-warning mb-1">TRIVIA & NICKNAMES</h6>
+                    <p id="modalCharTrivia" class="small m-0 text-white italic"></p>
                 </div>
             </div>
         </div>
@@ -213,30 +215,35 @@
 
 <script>
     const charTriviaDB = {
-        "Monkey D., Luffy": "Nickname: 'Straw Hat'. Title: 'Sun God Nika'. One of the Four Emperors.",
-        "Roronoa, Zoro": "Nickname: 'Pirate Hunter'. A master of the Three Sword Style.",
-        "Nami": "Nickname: 'Cat Burglar'. Navigator of the Straw Hat Pirates.",
-        "Sanji": "Nickname: 'Black Leg'. Prince of the Germa Kingdom and master chef.",
-        "Usopp": "Nickname: 'God' Usopp / 'Sogeking'. The legendary sniper of the crew.",
-        "Tony Tony, Chopper": "Nickname: 'Cotton Candy Lover'. The crew's doctor and a reindeer.",
-        "Nico, Robin": "Nickname: 'Devil Child'. The Light of the Revolution.",
-        "Franky": "Nickname: 'Iron Man' / 'Cutty Flam'. The cyborg shipwright.",
-        "Brook": "Nickname: 'Soul King'. The undead musician with the Revive-Revive Fruit.",
-        "Jinbe": "Nickname: 'First Knight of the Sea'. Former Warlord and helmsman.",
-        "Uzumaki, Naruto": "Titles: 'Hero of the Hidden Leaf', 'Orange Hokage', 'Child of Prophecy'.",
-        "Uchiha, Sasuke": "Titles: 'The Supporting Kage', 'Child of the Sharingan'.",
-        "Haruno, Sakura": "Title: 'The Second Tsunade'. The world's greatest medical ninja.",
-        "Hatake, Kakashi": "Nickname: 'Copy Ninja' / 'Kakashi of the Sharingan'. Sixth Hokage.",
-        "Nara, Shikamaru": "Title: 'The Leaf's Greatest Strategist'. Possesses an IQ over 200.",
-        "Hyuga, Hinata": "Nickname: 'Byakugan Princess'. The legendary heiress of the Hyuga.",
-        "Kurosaki, Ichigo": "Title: 'Substitute Shinigami'. A unique hybrid of Shinigami, Hollow, and Quincy.",
+        "Monkey D., Luffy": "Nickname: 'Straw Hat'. Title: 'Sun God Nika'. Emperor of the Sea.",
+        "Roronoa, Zoro": "Nickname: 'Pirate Hunter'. Master of Enma and the Three Sword Style.",
+        "Sanji": "Nickname: 'Black Leg'. Prince of Germa 66 and master of Diable Jambe.",
+        "Jinbe": "Nickname: 'First Knight of the Sea'. A powerful Fish-man master of Karate.",
+        "King": "True Name: Alber. A Lunarian survivor who served as Kaido's right hand.",
+        "Uzumaki, Naruto": "Titles: 'Hero of the Hidden Leaf', 'Seventh Hokage', 'Nine-Tails Jinchuriki'.",
+        "Uchiha, Sasuke": "Titles: 'The Supporting Kage', 'Shadow of the Shinobi World'.",
+        "Kurosaki, Ichigo": "Title: 'Substitute Shinigami'. The ultimate Hybrid of all races.",
         "Kuchiki, Rukia": "Title: 'Captain of the 13th Division'. Wielder of Sode no Shirayuki.",
-        "Abarai, Renji": "Nickname: 'The Red Pineapple'. Vice-Captain of the 6th Division.",
-        "Kuchiki, Byakuya": "Title: 'Head of the Kuchiki Clan'. A master of Senbonzakura.",
-        "Zaraki, Kenpachi": "Title: 'The 11th Kenpachi'. The strongest brute force combatant in Soul Society.",
-        "Hitsugaya, Toshiro": "Nickname: 'The Boy Genius'. Wielder of the strongest ice-type Zanpakuto.",
-        "Aizen, Sosuke": "Title: 'The Great Betrayer'. Master of absolute hypnosis.",
-        "Ishida, Uryu": "Title: 'The Last Quincy'. A genius archer and survivor."
+        "Abarai, Renji": "Nickname: 'Red Pineapple'. A powerful Shinigami with the roar of Zabimaru.",
+        "Ishida, Uryu": "Title: 'The Last Quincy'. Prince of the Wandenreich under Yhwach."
+    };
+
+    const loreDatabase = {
+        21: [
+            { label: "Fish-men", content: "A race primarily residing in Fish-man Island. Ten times stronger than humans from birth. <strong>Example: Jinbe.</strong>" },
+            { label: "Lunarians", content: "A near-extinct 'God' race from the Red Line capable of fire manipulation and immense durability. <strong>Example: King (Alber).</strong>" },
+            { label: "The Will of D", content: "A mysterious lineage known as the 'Natural Enemies of God' (Celestial Dragons)." }
+        ],
+        20: [
+            { label: "Jinchuriki", content: "Humans who have a Tailed Beast (Bijuu) sealed within them. They gain massive chakra but face social isolation. <strong>Example: Naruto (Kurama).</strong>" },
+            { label: "Otsutsuki Clan", content: "Celestial beings who travel dimensions to plant Divine Trees and harvest Chakra Fruit." },
+            { label: "Boruto Era", content: "A technologically advanced age where the legacy of Shinobi is threatened by scientific ninja tools and Karma marks." }
+        ],
+        269: [
+            { label: "Shinigami", content: "Soul Reapers who maintain the balance between the Human World and Soul Society. <strong>Example: Renji.</strong>" },
+            { label: "Quincy", content: "Humans who can manipulate Reishi. Unlike Shinigami, they completely destroy Hollows. <strong>Example: Uryu Ishida.</strong>" },
+            { label: "The Hybrid Case", content: "<strong>Ichigo Kurosaki</strong> is a unique entity containing Shinigami, Quincy, and Hollow powers simultaneously." }
+        ]
     };
 
     let charModal;
@@ -256,21 +263,18 @@
         const loader = document.getElementById('loader');
         root.style.display = 'none';
         loader.classList.remove('d-none');
-
         try {
             const [aRes, cRes] = await Promise.all([
                 fetch(`https://api.jikan.moe/v4/anime/${id}`),
                 fetch(`https://api.jikan.moe/v4/anime/${id}/characters`)
             ]);
-
             animeData = (await aRes.json()).data;
             charData = (await cRes.json()).data.slice(0, 12);
-            
             loader.classList.add('d-none');
             root.style.display = 'block';
             render();
         } catch (e) {
-            root.innerHTML = `<h5 class="text-center p-5">API Error. Please refresh.</h5>`;
+            root.innerHTML = `<h5 class="text-center p-5">Service Unavailable. Please refresh.</h5>`;
             loader.classList.add('d-none');
             root.style.display = 'block';
         }
@@ -279,40 +283,42 @@
     function render() {
         const root = document.getElementById('app-root');
         const anime = animeData;
-        
         root.innerHTML = `
             <div class="row g-5">
-                <div class="col-lg-4 animate__animated animate__fadeInLeft">
+                <div class="col-lg-4 animate__animated animate__fadeInLeft text-center">
                     <img src="${anime.images.jpg.large_image_url}" class="img-fluid rounded-5 shadow-lg border border-secondary mb-4">
-                    <div class="p-3 bg-dark rounded-4 border border-secondary mb-3 text-center">
+                    <div class="p-3 bg-dark rounded-4 border border-secondary">
                         <small class="accent-txt fw-bold d-block mb-1">SCORE</small>
-                        <h5 class="text-white m-0">⭐ ${anime.score || 'N/A'} / 10</h5>
+                        <h5 class="text-white m-0">⭐ ${anime.score || 'N/A'}</h5>
                     </div>
                 </div>
-
                 <div class="col-lg-8 animate__animated animate__fadeInRight">
-                    <h1 class="display-4 fw-bold mb-3">${anime.title}</h1>
-                    
+                    <h1 class="display-5 fw-bold mb-3">${anime.title}</h1>
                     <div class="btn-group info-toggle-group mb-4 w-100">
                         <button class="btn ${activeTab === 'story' ? 'active' : ''}" onclick="setTab('story')">STORY</button>
+                        <button class="btn ${activeTab === 'lore' ? 'active' : ''}" onclick="setTab('lore')">RACES & LORE</button>
                         <button class="btn ${activeTab === 'stats' ? 'active' : ''}" onclick="setTab('stats')">DATA</button>
                     </div>
-
-                    <div class="mb-5">
+                    <div class="mb-4">
                         ${activeTab === 'story' ? `<p class="lead" style="line-height:1.8">${anime.synopsis}</p>` : 
+                          activeTab === 'lore' ? `<div class="animate__animated animate__fadeInUp">
+                            ${loreDatabase[anime.mal_id].map(l => `
+                                <div class="lore-item">
+                                    <span class="lore-label">${l.label}</span>
+                                    <p class="small m-0 text-white">${l.content}</p>
+                                </div>
+                            `).join('')}
+                          </div>` : 
                         `<div class="row g-3">
-                            <div class="col-md-6"><div class="p-3 bg-dark rounded-3 border border-secondary"><small class="text-muted d-block">Episodes</small>${anime.episodes || 'Ongoing'}</div></div>
-                            <div class="col-md-6"><div class="p-3 bg-dark rounded-3 border border-secondary"><small class="text-muted d-block">Status</small>${anime.status}</div></div>
-                            <div class="col-md-6"><div class="p-3 bg-dark rounded-3 border border-secondary"><small class="text-muted d-block">Rank</small>#${anime.rank || 'N/A'}</div></div>
-                            <div class="col-md-6"><div class="p-3 bg-dark rounded-3 border border-secondary"><small class="text-muted d-block">Studios</small>${anime.studios.map(s => s.name).join(', ')}</div></div>
+                            <div class="col-6"><div class="p-3 bg-dark rounded-3 border border-secondary"><small class="text-muted d-block">Episodes</small>${anime.episodes || 'Ongoing'}</div></div>
+                            <div class="col-6"><div class="p-3 bg-dark rounded-3 border border-secondary"><small class="text-muted d-block">Status</small>${anime.status}</div></div>
                         </div>`}
                     </div>
-                    
-                    <h4 class="accent-txt mb-4 fw-bold">CHARACTER DOSSIERS</h4>
-                    <div class="row g-3">
+                    <h4 class="accent-txt mb-3 fw-bold">CHARACTER DOSSIERS</h4>
+                    <div class="row g-2">
                         ${charData.map((c, i) => `
-                            <div class="col-6 col-md-3">
-                                <div class="char-tag animate__animated animate__zoomIn" style="animation-delay: ${i * 0.05}s" onclick="openDossier(${i})">
+                            <div class="col-4 col-md-3">
+                                <div class="char-tag" onclick="openDossier(${i})">
                                     <img src="${c.character.images.jpg.image_url}" class="char-thumb">
                                     <p class="small fw-bold text-white m-0 text-truncate">${c.character.name}</p>
                                 </div>
@@ -331,9 +337,8 @@
         document.getElementById('modalCharName').innerText = char.character.name;
         document.getElementById('modalCharImg').src = char.character.images.jpg.image_url;
         document.getElementById('modalCharRole').innerText = `Role: ${char.role}`;
-        document.getElementById('modalCharAbout').innerText = `Featured in ${animeData.title} with ${char.favorites} favorites.`;
-        const trivia = charTriviaDB[char.character.name] || "A key figure within the series narrative.";
-        document.getElementById('modalCharTrivia').innerText = `"${trivia}"`;
+        document.getElementById('modalCharAbout').innerText = `Appears in ${animeData.title}. Character Rank: ${char.favorites} Favorites.`;
+        document.getElementById('modalCharTrivia').innerText = `"${charTriviaDB[char.character.name] || 'No restricted data available for this profile.'}"`;
         charModal.show();
     }
 
